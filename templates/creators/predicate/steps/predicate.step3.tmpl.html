@@ -1,0 +1,28 @@
+<div class="predicate-creation">
+    <div class="predicate-creation-details">
+        <h2 class="title">Predicate Details</h2>
+        <table class="creation-form">
+            <tr>
+                <td>Operator: </td>
+                <td>
+                    <select class="predicate-operators">
+                        {{#each supportedOperators}}
+                            <option value="{{this}}">{{this}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Default value:
+                </td>
+                <td class="predicate-default-value-container">
+                    {{getInputForProperty property}}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="button-container">
+        <input type="button" class="create-predicate action-button" value="Add" />
+    </div>
+</div>

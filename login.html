@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!--
+1. Make this page look presentable. Add a CSS and pick colors. I am looking for your design talent.
+2. Go here - https://developers.google.com/identity/sign-in/web/
+   Move your cursor on the HTML snippet and notice the two icons that show up on the top right corner
+   Dark color theme and click to copy options
+
+   Do the necessary to make the same happen but only for the cells in the center
+       column of the Datatable.
+   Add buttons for copy, paste, and edit.
+   Show the button only on hover and much like how the link above does
+       (drop down on top right corner with some animation).
+   When clicked show an alert dialog informing what button was pressed and
+       which row and column was clicked.
+-->
+<html>
+<title>Home</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/b-1.2.4/se-1.2.0/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/b-1.2.4/se-1.2.0/datatables.min.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script type="text/javascript">
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        var user_name = profile.getName();
+        var user_image_url = profile.getImageUrl();
+
+        $('#user_name').html(user_name);
+        $("#user_img").attr("src",user_image_url);
+
+        $('#user_name').removeClass("hidden").addClass("visible");
+        $('#user_image').removeClass("hidden").addClass("visible");
+
+    }
+</script>
+<meta name="google-signin-client_id" content="272467299069-0k7ep79a9njgt7n1u2vao93m3dtg3f1c.apps.googleusercontent.com">
+
+<!--<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>-->
+
+<style>
+    body,h1,h2,h3,h4,h5,h6 { font-family: "Lato", sans-serif }
+    .w3-navbar,h1,button { font-family: "Montserrat", sans-serif }
+    .fa-anchor,.fa-coffee { font-size:200px }
+
+    div.table-action-buttons-container {
+        color: #FFF;
+        float: right;
+        display: none;
+        margin-top: -4px;
+        margin-right: -4px;
+    }
+
+    a.action-button {
+        background-color: #009688;
+        display: inline-block;
+        cursor: pointer;
+        padding: 1px 3px 3px 3px;
+        border-radius: 0px 0px 10px 10px;
+
+        transition: background-color 0.2s;
+    }
+
+    a.action-button:hover {
+        background-color: #004e45;
+    }
+
+    input, select {
+        border-radius: 10px;
+        padding: 10px;
+        border: none;
+        background-color: #FFF;
+    }
+
+
+    .headerMenu {
+        display: inline-block;
+        width: 100%;
+    }
+    .headerRight {
+        float: right;
+    }
+    .headerLeft {
+        float: left;
+    }
+
+    div.hidden {
+        display:none;
+    }
+
+    div.visible {
+        display:block;
+    }
+
+</style>
+<body>
+
+
+<!-- Navbar -->
+<div class="w3-top">
+
+
+
+
+        <ul class="w3-navbar w3-teal w3-card-2 w3-left-align w3-large">
+            <div class="headerMenu">
+                <div class="headerLeft">
+                    <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+                        <a class="w3-padding-large w3-hover-white w3-large w3-teal" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+                    </li>
+
+
+                    <li><a href="#" class="w3-padding-large w3-white">Home</a></li>
+                    <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white">Feature 1</a></li>
+                    <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white">Feature 2</a></li>
+                    <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white">Feature 3</a></li>
+                </div>
+                <div class="headerRight">
+
+                    <li><div class="hidden" id="user_name">Not logged in</div></li>
+                    <li><div class="hidden" id="user_image"><A HREF="">
+                        <IMG id="user_img" HEIGHT=50 WIDTH=50 SRC=""></A></div></li>
+                    <li> <div class="g-signin2" data-onsuccess="onSignIn"></div></li>
+
+                </div>
+            </div>
+        </ul>
+
+
+
+
+
+
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium">
+        <ul class="w3-navbar w3-left-align w3-large w3-black">
+            <li><a class="w3-padding-large" href="#">Feature 1</a></li>
+            <li><a class="w3-padding-large" href="#">Feature 2</a></li>
+            <li><a class="w3-padding-large" href="#">Feature 3</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-teal w3-center w3-padding-24">
+    <h1 class="w3-margin w3-jumbo">START PAGE</h1>
+    <button class="w3-btn w3-padding-16 w3-large w3-margin-top">Get Started</button>
+</header>
+
+
+
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-8 w3-center w3-opacity">
+    <div class="w3-xlarge w3-padding-4">
+        <a href="#" class="w3-hover-text-indigo"><i class="fa fa-facebook-official"></i></a>
+        <a href="#" class="w3-hover-text-teal"><i class="fa fa-pinterest-p"></i></a>
+        <a href="#" class="w3-hover-text-light-blue"><i class="fa fa-twitter"></i></a>
+        <a href="#" class="w3-hover-text-grey"><i class="fa fa-flickr"></i></a>
+        <a href="#" class="w3-hover-text-indigo"><i class="fa fa-linkedin"></i></a>
+    </div>
+    <p>Powered by <a href="http://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+<script>
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function myFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script>
+
+</body>
+</html>

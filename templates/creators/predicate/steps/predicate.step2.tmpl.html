@@ -1,0 +1,13 @@
+<div class="predicate-property-details">
+    <h2 class="title">Selected Property</h2>
+    <div class="property-detail-container">
+        <p class="property-data-container">
+            <span class="property-name">{{name}}</span>
+            <span class="property-type">({{#if isList}}Collection of {{/if}}{{type}})</span>
+        </p>
+
+        {{ getChoices this }}
+
+        <p class="property-description">{{description}}</p>
+    </div>
+</div>

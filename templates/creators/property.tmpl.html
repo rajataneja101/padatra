@@ -1,0 +1,61 @@
+<div id="property-creator" class="data-creator">
+    <div class="title-bar">
+        <a class="close-dialog action-button" title="close"><i class="fa fa-window-close"></i></a>
+    </div>
+    <h1 class="title">Create a new Property</h1>
+    <form id="property-creator-form">
+        <div class="property-creation">
+            <table>
+                <tr>
+                    <th>Name: </th>
+                    <td><input id="name" name="name" type="text" class="new-property-input" /></td>
+                </tr>
+                <tr>
+                    <th>Description: </th>
+                    <td><textarea id="description" name="description" class="new-property-input"></textarea>
+                </tr>
+                <tr>
+                    <th>Type: </th>
+                    <td>
+                        <select id="type" name="type" type="text" class="new-property-input">
+                            {{#each dataTypes}}
+                                <option value="{{this}}">{{this}}</option>
+                            {{/each}}
+                        </select>
+                    </td>
+                </tr>
+                <tr class="is-list-container">
+                    <th>Is Collection?</th>
+                    <td>
+                        <input id="isList" name="isList" type="checkbox" class="new-property-input" />
+                    </td>
+                </tr>
+                <tr class="is-restricted-container">
+                    <th>Is Predefined?</th>
+                    <td>
+                        <input id="isRestricted" name="isRestricted" type="checkbox" class="new-property-input" />
+                    </td>
+                </tr>
+                <tr class="choices-container">
+                    <th>Choices:</th>
+                    <td>
+                        <div class="add-choice-form-container">
+                            <div class="add-choice-input-container">
+                                <input type="number" class="new-property-input add-choice-input" disabled="disabled" />
+                            </div>
+                            <input type="button" class="add-choice action-button" value="Add" disabled="disabled" />
+                        </div>
+                        <div>
+                            <select multiple="multiple" id="choices" name="choices" class="new-property-input disabled-choices-list" disabled="disabled"></select>
+                        </div>
+                        <input type="button" class="remove-choice action-button" value="Remove" disabled="disabled" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="validation-error-container"></div>
+        <div class="button-container">
+            <input id="create-property" type="button" class="create-property action-button" value="Create" />
+        </div>
+    </form>
+</div>

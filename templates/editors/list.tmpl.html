@@ -1,0 +1,56 @@
+<div id="editor-List" class="data-editor" >
+    <div class="title-bar">
+        <a class='action-button editor-close' title="close"><i class="fa fa-window-close"></i></a>
+    </div>
+    <h1 class="property-name">{{property.name}}</h1>
+
+    <table>
+        <tr>
+            <td><label>Current: </label></td>
+            <td class="current-value">
+                <ul>
+                    {{#each currentValues}}
+                        <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><label>New: </label></td>
+            <td class="new-value" data-predicate-id="{{predicateId}}" data-variant-id="{{variantId}}">
+                {{#if property.isList}}
+                    <ul class="editor-choices-container" value="{{currentValues}}">
+                        {{#each choices}}
+                            <li class="editor-choice">
+                                <input type="checkbox" value="{{id}}" name="choice"
+                                       {{isChoiceChecked this ../this }} />
+                                {{value}}
+                            </li>
+                        {{/each}}
+                    </ul>
+                {{else}}
+                    <select class="editor-choices-container">
+                        {{#each choices}}
+                            <option class="editor-choice" value="{{id}}">{{value}}</option>
+                        {{/each}}
+                    </select>
+                {{/if}}
+            </td>
+        </tr>
+    </table>
+
+    {{#if property.isList}}
+        <div class="list-choices-action-button-container">
+            <input type="button" class="select-all" value="Select all" />
+            <input type="button" class="select-none" value="Select none" />
+            <input type="button" class="sort" value="Sort" />
+        </div>
+    {{/if}}
+
+    <div class="action-button-container">
+        <input type="button" class="editor-submit" value="Update" />
+    </div>
+
+    <div class="bubble-triangle"></div>
+       <div class="bubble-triangle-top"></div>
+</div>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!--
+1. Make this page look presentable. Add a CSS and pick colors. I am looking for your design talent.
+2. Go here - https://developers.google.com/identity/sign-in/web/
+   Move your cursor on the HTML snippet and notice the two icons that show up on the top right corner
+   Dark color theme and click to copy options
+
+   Do the necessary to make the same happen but only for the cells in the center
+       column of the Datatable.
+   Add buttons for copy, paste, and edit.
+   Show the button only on hover and much like how the link above does
+       (drop down on top right corner with some animation).
+   When clicked show an alert dialog informing what button was pressed and
+       which row and column was clicked.
+-->
+<html>
+
+<title>Master Table</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="css/w3.css">
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/jquery-ui.min.css">
+<!--<link rel="stylesheet" href="css/colorsbylist.css">-->
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+<link rel="stylesheet" href="css/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" href="css/selectize.default.css">
+
+<!--<script src="http://code.jquery.com/jquery-latest.min.js"></script>-->
+<script src="js/lib/jquery.min.js"></script>
+<script src="js/lib/jquery-ui.min.js"></script>
+<script src="js/lib/handlebars-v4.0.5.js"></script>
+<script src="js/lib/lodash.js"></script>
+<script src="js/lib/jquery.validate.js"></script>
+<script src="js/lib/selectize.js"></script>
+<script src="js/lib/jquery.blockUI.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/b-1.2.4/se-1.2.0/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/b-1.2.4/se-1.2.0/datatables.min.js"></script>
+<!--<link rel="stylesheet" href="css/datatables.min.css">-->
+<!--<script src="js/lib/datatables.min.js"></script>-->
+
+<link rel="stylesheet" href="css/jquery.datetimepicker.min.css">
+<script src="js/lib/jquery.datetimepicker.full.js"></script>
+
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+    <ul class="w3-navbar w3-light-blue w3-card-2 w3-left-align w3-large">
+        <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+            <a class="w3-padding-large w3-hover-white w3-large w3-light-blue" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+        </li>
+        <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white">Home</a></li>
+        <li><a href="#" class="w3-padding-large w3-white">Master Table</a></li>
+        <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white">Login</a></li>
+    </ul>
+
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium">
+        <ul class="w3-navbar w3-left-align w3-large w3-black">
+            <li><a class="w3-padding-large" href="#">Master Table</a></li>
+            <li><a class="w3-padding-large" href="#">Login</a></li>
+        </ul>
+    </div>
+
+    <header class="w3-container w3-light-blue w3-center w3-padding-8">
+        <h1 class=" w3-xxlarge">Digital Eclairs Tool</h1>
+        <!--<button class="w3-btn w3-padding-16 w3-large w3-margin-top">Get Started</button>-->
+    </header>
+</div>
+
+<!-- Header -->
+<!--<header class="w3-container w3-light-blue w3-center w3-padding-24">-->
+    <!--<h1 class="w3-margin w3-xxxlarge">Digital Eclairs Tool</h1>-->
+    <!--&lt;!&ndash;<button class="w3-btn w3-padding-16 w3-large w3-margin-top">Get Started</button>&ndash;&gt;-->
+<!--</header>-->
+
+ First Grid
+<!--<div class="w3-row-padding w3-padding-12 w3-container">-->
+    <!--<div class="w3-content">-->
+        <!--&lt;!&ndash;<div class="w3-twothird">&ndash;&gt;-->
+            <!--&lt;!&ndash;<h1>Feature Description</h1>&ndash;&gt;-->
+            <!--&lt;!&ndash;<h5 class="w3-padding-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit, idunt ut labore et dolore magna aliqua.</h5>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--</div>-->
+<!--</div>-->
+
+<!-- Second Grid -->
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container main-container">
+    <div class="w3-content">
+
+        <div id="main-content"></div>
+
+    </div>
+</div>
+
+<div class="w3-container w3-black w3-center w3-opacity w3-padding-8">
+    <h1 class="w3-margin w3-xlarge">Quote of the day: live life</h1>
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-8 w3-center w3-opacity">
+    <div class="w3-xlarge w3-padding-4">
+        <a href="#" class="w3-hover-text-indigo"><i class="fa fa-facebook-official"></i></a>
+        <a href="#" class="w3-hover-text-teal"><i class="fa fa-pinterest-p"></i></a>
+        <a href="#" class="w3-hover-text-light-blue"><i class="fa fa-twitter"></i></a>
+        <a href="#" class="w3-hover-text-grey"><i class="fa fa-flickr"></i></a>
+        <a href="#" class="w3-hover-text-indigo"><i class="fa fa-linkedin"></i></a>
+    </div>
+    <p>Powered by <a href="http://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+<script>
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function myFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+
+</script>
+
+<!--Initialization-->
+<script src="js/app/app.js"></script>
+
+<!--Models-->
+<script src="js/app/model/Operator.js"></script>
+<script src="js/app/model/Predicate.js"></script>
+<script src="js/app/model/Product.js"></script>
+<script src="js/app/model/Property.js"></script>
+<script src="js/app/model/PropertyDataType.js"></script>
+<script src="js/app/model/Variant.js"></script>
+<script src="js/app/model/VariantPredicateValue.js"></script>
+
+<!--Editors-->
+<script src="js/app/editor/BaseEditor.js"></script>
+<script src="js/app/editor/StringEditor.js"></script>
+<script src="js/app/editor/NumberEditor.js"></script>
+<script src="js/app/editor/BooleanEditor.js"></script>
+<script src="js/app/editor/CountryEditor.js"></script>
+<script src="js/app/editor/StateEditor.js"></script>
+<script src="js/app/editor/CityEditor.js"></script>
+<script src="js/app/editor/DateEditor.js"></script>
+<script src="js/app/editor/DatetimeEditor.js"></script>
+<script src="js/app/editor/ListEditor.js"></script>
+
+<script src="js/app/viewer/VariantPredicateValueViewer.js"></script>
+<script src="js/app/viewer/ValueListViewer.js"></script>
+
+<script src="js/app/creator/PredicateCreator.js"></script>
+<script src="js/app/creator/PropertyCreator.js"></script>
+<script src="js/app/selector/PropertySelector.js"></script>
+<script src="js/app/selector/PredicateSelector.js"></script>
+
+<script src="js/app/presentation/PropertyValueTypePresentationHelper.js"></script>
+<script src="js/app/presentation/ChoiceListSorter.js"></script>
+
+<!--App-->
+<script src="js/app/app.repository.js"></script>
+<script src="js/app/app.viewmodel.js"></script>
+
+</body>
+</html>

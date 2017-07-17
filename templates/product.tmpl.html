@@ -1,0 +1,89 @@
+<!--context type: model/Product-->
+<div class="product-detail-container" data-product-id="{{id}}">
+    <h1>{{name}}</h1>
+    <table class="product-detail">
+        <thead>
+            <tr class="headers-container">
+                <th class="properties-header action-button-parent" rowspan="2">
+                    <div class='table-header-action-buttons-container'>
+                        <a class='action-button select-predicate' title="Select"><i class="fa fa-plus-square-o"></i></a>
+                    </div>
+                    PROPERTIES
+                </th>
+                <th class="operators-header" rowspan="2">OPERATORS</th>
+                <th class="variants-header action-button-parent" colspan="{{selectedVariants.length}}">
+                    <div class='table-header-action-buttons-container'>
+                        <a class='action-button create-variant' title="Create"><i class="fa fa-plus-square"></i></a>
+                        <a class='action-button' title="Refresh"><i class="fa fa-refresh"></i></a>
+                    </div>
+                    VARIANTS
+                    <div class='variant-selection-buttons-container'>
+                        {{#each variants}}
+                            <a class='action-button show-variant {{isVariantSelected id}}'
+                               title="Refresh" data-variant-id="{{id}}">
+                                {{getReadableIndex @index}}
+                            </a>
+                        {{/each}}
+                    </div>
+                </th>
+            </tr>
+            <tr class="variants-names-container">
+                {{#each selectedVariants}}
+                    <th class="variant-name action-button-parent" data-variant-id="{{id}}">
+                        <div class='table-action-buttons-container'>
+                            <a class='action-button' title="whats this?"><i class="fa fa-question"></i></a>
+                            <a class='action-button {{getDeleteVariantsActionButtonClass ../this}}' title="Delete"><i class="fa fa-trash-o"></i></a>
+                            <a class='action-button' title="Refresh"><i class="fa fa-refresh"></i></a>
+                            <a class='action-button' title="Edit"><i class="fa fa-edit"></i></a>
+                            <a class='action-button' title="Information"><i class="fa fa-info-circle"></i></a>
+                        </div>
+                        {{name}}
+                    </th>
+                {{/each}}
+            </tr>
+        </thead>
+        <tbody>
+            {{#each predicates}}
+                <tr class="predicate-container">
+                    <td class="property-name action-button-parent" data-predicate-id="{{id}}"
+                        data-property-id="{{propertyId}}">
+                        <div class='table-action-buttons-container'>
+                            <a class='action-button delete-predicate' title="Delete"><i class="fa fa-trash-o"></i></a>
+                            <a class='action-button' title="Information"><i class="fa fa-info-circle"></i></a>
+                        </div>
+                        {{property.name}}
+                    </td>
+                    <td class="operator-container" data-property-id="{{propertyId}}">
+                        {{operator}}
+                    </td>
+                    {{#each ../selectedVariants}}
+                        <td class="variant-predicate-value-container action-button-parent"
+                            data-property-data-type="{{../property.type}}"
+                            data-property-id="{{../propertyId}}"
+                            data-property-name="{{../property.name}}"
+                            data-property-is-list="{{../property.isList}}"
+                            data-property-is-restricted="{{../property.isRestricted}}"
+                            data-predicate-id="{{../id}}"
+                            data-variant-id="{{id}}">
+                            <!--data-variant-predicate-value-id="{{! getVariantPredicateValueIdForPredicate ../this variantPredicateValues }}">-->
+                            {{ getVariantValueIsOverrideMarker ../this variantPredicateValues }}
+                            <div class='table-action-buttons-container'>
+                                <a class='action-button' title="Copy"><i class="fa fa-copy"></i></a>
+                                <a class='action-button' title="Paste"><i class="fa fa-paste"></i></a>
+                                <a class='action-button' title="Refresh"><i class="fa fa-refresh"></i></a>
+                                <a class='action-button edit' title="Edit"><i class="fa fa-edit"></i></a>
+                                <a class='action-button view' title="View"><i class="fa fa-eye"></i></a>
+                            </div>
+                            {{getVariantPredicateValueForPredicate ../this variantPredicateValues ../property.isList}}
+                        </td>
+                    {{/each}}
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <!--<div id="pagination" class="pagination">-->
+        <!--<a id="prev-page" class="number" data-page-index="{{! prevPage }}">&laquo;</a>-->
+        <!--{{! getPageNumberButtons numberOfPages }}-->
+        <!--<a id="next-page" class="number" data-page-index="{{! nextPage }}">&raquo;</a>-->
+    <!--</div>-->
+</div>
